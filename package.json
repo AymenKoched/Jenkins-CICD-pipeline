@@ -1,0 +1,42 @@
+{
+  "name": "pipeline-demo",
+  "version": "1.0.0",
+  "description": "pipeline demo with jenkins ",
+  "main": "index.js",
+  "repository": "https://github.com/AymenKoched/pipeline-demo",
+  "author": "aymenkoched",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "preinstall": "husky install",
+    "lint:fix": "yarn workspaces foreach --parallel --jobs 2 --topological-dev --verbose run lint:fix",
+    "lint": "yarn workspaces foreach --parallel --jobs 2 --topological-dev --verbose run lint",
+    "stack:up": "docker-compose -p pipeline-app -f docker-compose.yml up -d",
+    "stack:down": "docker-compose -p pipeline-app -f docker-compose.yml down"
+  },
+  "lint-staged": {
+    "packages/**/*{.tsx,.ts,.js}": [
+      "yarn lint:fix"
+    ],
+    "*{.md,.json}": [
+      "prettier --write"
+    ]
+  },
+  "workspaces": [
+    "services/*"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/prompt": "^19.6.0",
+    "commitizen": "^4.3.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/prompt"
+    }
+  },
+  "packageManager": "yarn@3.2.3"
+}

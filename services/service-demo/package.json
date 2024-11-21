@@ -1,0 +1,27 @@
+{
+  "name": "service-demo",
+  "version": "1.0.0",
+  "description": "service demo",
+  "main": "index.js",
+  "author": "aymenkoched",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node ./src/main.js",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.js\"",
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.js\" --fix"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "prettier": "^3.3.3"
+  }
+}
