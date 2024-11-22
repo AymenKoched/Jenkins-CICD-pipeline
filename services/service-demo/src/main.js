@@ -34,10 +34,10 @@ app.post('/update-profile', async function (req, res) {
 
   const myQuery = { userid: 1 };
   const newValues = { $set: userObj };
-  const user = await User.findOneAndUpdate(myQuery, newValues, {
-    upsert: true,
-    new: true,
-  });
+  // const user = await User.findOneAndUpdate(myQuery, newValues, {
+  //   upsert: true,
+  //   new: true,
+  // });
 
   res.send(user);
 });
