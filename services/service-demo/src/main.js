@@ -40,6 +40,10 @@ app.post('/update-profile', async function (req, res) {
       });
 
       res.send(user);
+
+
+
+
 });
 
 app.get('/get-profile', async function (req, res) {
