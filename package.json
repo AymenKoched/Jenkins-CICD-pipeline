@@ -16,6 +16,9 @@
     "stack:down": "docker-compose -p pipeline-app -f docker-compose.yml down"
   },
   "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ],
     "*{.md,.json}": [
       "prettier --write"
     ]
