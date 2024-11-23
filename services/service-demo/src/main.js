@@ -29,7 +29,6 @@ app.get('/profile-picture', function (req, res) {
 
 app.post('/update-profile', async function (req, res) {
   let userObj = req.body;
-
   userObj['userid'] = 1;
 
   const myQuery = { userid: 1 };

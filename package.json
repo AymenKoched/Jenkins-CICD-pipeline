@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "pipeline demo with jenkins ",
   "main": "index.js",
-  "repository": "https://github.com/AymenKoched/pipeline-demo",
+  "repository": "https://github.com/AymenKoched/pipeline-demo.git",
   "author": "aymenkoched",
   "license": "MIT",
   "private": true,
