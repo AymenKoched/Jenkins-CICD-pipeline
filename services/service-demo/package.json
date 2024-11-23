@@ -8,10 +8,11 @@
   "private": true,
   "scripts": {
     "dev": "nodemon main",
+    "build": "rimraf dist && babel src --out-dir dist --copy-files",
+    "format": "prettier --write \"src/**/*.js\"",
     "start": "node ./dist/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.js\"",
-    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.js\" --fix",
-    "build": "rimraf dist && babel src --out-dir dist --copy-files"
+    "lint:fix": "eslint \"{src,apps,libs,test}/**/*.js\" --fix"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
@@ -31,5 +32,6 @@
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1"
-  }
+  },
+  "type": "module"
 }
