@@ -9,7 +9,7 @@ import {
   updateProfileData,
 } from './controllers/profile.controller.js';
 
-export function createApp() {
+export default function createApp() {
   const app = express();
 
   connectDb();
