@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
@@ -14,6 +15,8 @@ app.use(
   }),
 );
 app.use(bodyParser.json());
+
+app.use(morgan('dev'));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));

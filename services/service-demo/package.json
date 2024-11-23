@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "node ./src/main.js",
+    "dev": "nodemon main",
+    "start": "node ./dist/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.js\"",
     "lint:fix": "eslint \"{src,apps,libs,test}/**/*.js\" --fix",
     "build": "rimraf dist && babel src --out-dir dist --copy-files"
@@ -15,7 +16,8 @@
   "dependencies": {
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
-    "mongoose": "^8.8.2"
+    "mongoose": "^8.8.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.9",
@@ -26,6 +28,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
     "rimraf": "^6.0.1"
   }
