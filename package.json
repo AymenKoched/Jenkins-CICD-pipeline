@@ -12,6 +12,8 @@
     "commit": "git-cz",
     "lint:fix": "yarn workspaces foreach --parallel --jobs 2 --topological-dev --verbose run lint:fix",
     "lint": "yarn workspaces foreach --parallel --jobs 2 --topological-dev --verbose run lint",
+    "build": "yarn workspaces foreach --parallel --jobs 2 --topological-dev --verbose run build",
+    "test": "yarn workspaces foreach --parallel --jobs 2 --topological-dev --verbose run test",
     "stack:up": "docker-compose -p pipeline-app -f docker-compose.yml up -d",
     "stack:down": "docker-compose -p pipeline-app -f docker-compose.yml down"
   },
