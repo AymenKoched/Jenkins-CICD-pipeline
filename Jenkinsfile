@@ -8,8 +8,6 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
         DOCKER_IMAGE = 'aymenkoched02/pipeline-demo'
-        env.BRANCH = env.CHANGE_BRANCH ?: env.BRANCH_NAME
-        env.IS_MASTER = env.BRANCH == 'master'
         DEPLOY_JOB_NAME = "Pipeline demo deployment 🚀 🌎"
     }
 
@@ -18,6 +16,8 @@ pipeline {
             steps {
                 script {
                     env.CI = true
+                    env.BRANCH = env.CHANGE_BRANCH ?: env.BRANCH_NAME
+                    env.IS_MASTER = env.BRANCH == 'master'
                 }
                 sh "env"
             }
