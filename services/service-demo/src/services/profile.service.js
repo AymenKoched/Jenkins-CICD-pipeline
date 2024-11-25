@@ -3,7 +3,7 @@ import path from 'path';
 import User from '../entities/user.js';
 
 export const getProfilePicture = async () => {
-  return fs.promises.readFile(path.resolve('./assets/images/profile-1.jpg'));
+  return fs.promises.readFile(path.resolve('./assets/images/profile-2.jpg'));
 };
 
 export const updateProfile = async (userObj) => {
