@@ -23,13 +23,5 @@ services:
     ports:
       - 8081:8081
 
-  service-demo:
-    image: service-demo:latest
-    container_name: service-demo-container
-    environment:
-      - IS_DOCKER=true
-    ports:
-      - 3000:3000
-
 volumes:
   db-data:

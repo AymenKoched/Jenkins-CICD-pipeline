@@ -8,7 +8,7 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
         DOCKER_IMAGE = 'aymenkoched02/pipeline-demo'
-        DOCKER_NETWORK_NAME = 'pipeline-demo-network'
+        DOCKER_NETWORK_NAME = 'pipeline-app_default'
         JOB_NAME = 'Pipeline demo deployment 🚀 🌎'
     }
 
@@ -82,6 +82,9 @@ pipeline {
         }
 
         stage('Deploy services') {
+            when {
+                expression{env.IS_MASTER == 'true'}
+            }
             matrix {
                 axes {
                     axis {
