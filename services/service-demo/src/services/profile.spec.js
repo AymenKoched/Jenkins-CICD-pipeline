@@ -29,7 +29,7 @@ describe('Profile Service', () => {
 
       expect(result).toEqual(mockImage);
       expect(fs.promises.readFile).toHaveBeenCalledWith(
-        path.resolve('./assets/images/profile-1.jpg'),
+        path.resolve('./assets/images/profile-2.jpg'),
       );
     });
 
