@@ -8,7 +8,8 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
         DOCKER_IMAGE = 'aymenkoched02/pipeline-demo'
-        DEPLOY_JOB_NAME = "Pipeline demo deployment 🚀 🌎"
+        DOCKER_NETWORK_NAME = 'pipeline-demo-network'
+        JOB_NAME = 'Pipeline demo deployment 🚀 🌎'
     }
 
     stages {
@@ -20,6 +21,7 @@ pipeline {
                     env.IS_MASTER = env.BRANCH == 'master'
                 }
                 sh "env"
+                sh "whoami"
             }
         }
 
@@ -71,6 +73,39 @@ pipeline {
                                     echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin
                                     docker push ${DOCKER_IMAGE}:${SERVICE}-${BUILD_NUMBER}
                                     docker logout
+                                """
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Deploy services') {
+            matrix {
+                axes {
+                    axis {
+                        name 'SERVICE'
+                        values 'service-demo'
+                    }
+                }
+                stages {
+                    stage('Pull and Deploy') {
+                        steps {
+                            script {
+                                sh "docker pull ${DOCKER_IMAGE}:${SERVICE}-${BUILD_NUMBER}"
+
+                                sh "docker stop ${SERVICE}-container || true"
+
+                                sh "docker rm ${SERVICE}-container || true"
+
+                                sh """
+                                    docker run -d \
+                                    --name ${SERVICE}-container \
+                                    --network ${DOCKER_NETWORK_NAME} \
+                                    -e IS_DOCKER=true \
+                                    -p 3000:3000 \
+                                    ${DOCKER_IMAGE}:${SERVICE}-${BUILD_NUMBER}
                                 """
                             }
                         }
