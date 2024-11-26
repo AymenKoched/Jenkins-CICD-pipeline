@@ -130,6 +130,12 @@ After all pipeline stages are executed, the pipeline performs a cleanup by remov
   deleteDir()
 ```
 
+### Jenkins Build Screenshot
+
+Here is a screenshot of the Jenkins build process for this project:
+
+![Jenkins Build](docs/images/jenkins_build.png)
+
 ## III. Root Directory
 
 ### 1. Available Scripts
