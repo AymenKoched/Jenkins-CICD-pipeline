@@ -1,39 +1,26 @@
-# Pipeline Demo
+# Jenkins CI/CD pipeline
 
 This repository demonstrates a Jenkins pipeline for building and deploying services using Docker Compose and Yarn workspaces.
 
 ## Prerequisites
 
-Before using this repository, ensure that you have the following tools and dependencies installed:
+Ensure the following tools and dependencies are installed:
 
-1. **Docker**: Ensure Docker is installed and running on your local machine to build and deploy Docker images.
+1. **Docker**: For building and deploying Docker images. [Get Docker](https://docs.docker.com/get-docker/)
 
-   - [Install Docker](https://docs.docker.com/get-docker/)
+2. **Docker Compose**: For managing multi-container applications. [Get Docker Compose](https://docs.docker.com/compose/install/)
 
-2. **Docker Compose**: Required to manage multi-container Docker applications.
+3. **Node.js**: Version 18+ recommended. [Get Node.js](https://nodejs.org/)
 
-   - [Install Docker Compose](https://docs.docker.com/compose/install/)
+4. **Yarn**: For dependency management. [Get Yarn](https://classic.yarnpkg.com/en/docs/install/)
 
-3. **Node.js**: Make sure Node.js is installed (version 18 or higher is recommended).
+5. **Jenkins**: To automate pipelines. [Get Jenkins](https://www.jenkins.io/doc/book/installing/)
 
-   - [Install Node.js](https://nodejs.org/)
+6. **Jenkins Agent**: Must have Node.js installed and be labeled `nodejs-agent`.
 
-4. **Yarn**: This project uses Yarn for managing dependencies and running scripts.
+7. **Docker Hub Account**: For pushing/pulling Docker images. [Sign up](https://hub.docker.com/signup)
 
-   - [Install Yarn](https://classic.yarnpkg.com/en/docs/install/)
-
-5. **Jenkins**: Jenkins is used to automate the pipeline for building and deploying services.
-
-   - [Install Jenkins](https://www.jenkins.io/doc/book/installing/)
-
-6. **Jenkins Agent with Node.js**: The Jenkins agent must have Node.js installed and be labeled as `nodejs-agent` for the pipeline to work.
-
-7. **Docker Hub Account**: A Docker Hub account is required for pushing and pulling images from Docker Hub.
-
-   - [Sign up for Docker Hub](https://hub.docker.com/signup)
-
-8. **Git**: Git is used for version control and pulling the repository.
-   - [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+8. **Git**: For version control. [Get Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
 ## I. Dockerfile for Service Build
 
@@ -91,8 +78,8 @@ The pipeline automates building, testing, Dockerizing, and deploying services. I
 3. **Lint and Build**:
    Runs `yarn lint` and `yarn build` in parallel.
 
-4**Run Tests**:
-Executes `yarn test` to run all defined tests and ensure the code is functioning as expected.
+4. **Run Tests**:
+   Executes `yarn test` to run all defined tests and ensure the code is functioning as expected.
 
 5. **Dockerize Services**:
 
@@ -104,8 +91,8 @@ Executes `yarn test` to run all defined tests and ensure the code is functioning
    ```bash
     docker build --build-arg SERVICE=${SERVICE} -t ${DOCKER_IMAGE}:${SERVICE}-${BUILD_NUMBER} .
     echo ${DOCKER_HUB_CREDENTIALS_PSW} | docker login -u ${DOCKER_HUB_CREDENTIALS_USR} --password-stdin
-     docker push ${DOCKER_IMAGE}:${SERVICE}-${BUILD_NUMBER}
-     docker logout
+    docker push ${DOCKER_IMAGE}:${SERVICE}-${BUILD_NUMBER}
+    docker logout
    ```
 
 6. **Deploy Services**:
